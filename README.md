@@ -54,7 +54,7 @@ Now go into the cloned repository and run the python script. Provide the locatio
 
 ```
 cd convert-coco-wholebody-for-yolo
-python3 convert_coco.py ../coco-wholebody-annotations/ ../coco17-images/train2017/ ../coco17-images/val2017/ ../converted_data/
+python3 convert_data.py ../coco-wholebody-annotations/ ../coco17-images/train2017/ ../coco17-images/val2017/ ../converted_data/
 ```
 
 After converting the dataset you can follow the steps from the [Ultralytics Docs](https://docs.ultralytics.com/datasets/pose#usage) to train the model. Be sure to point the `data` parameter to the `.yaml` file located in the output folder.
