@@ -54,7 +54,7 @@ Now go into the cloned repository and run the python script. Provide the locatio
 
 ```
 cd convert-coco-wholebody-for-yolo
-python3 -m pip install -r requirments.txt
+python3 -m pip install -r requirements.txt
 python3 convert_data.py ../coco-wholebody-annotations/ ../coco17-images/train2017/ ../coco17-images/val2017/ ../converted_data/
 ```
 
