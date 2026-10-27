@@ -119,7 +119,7 @@ def main():
 
         print("Done")
 
-    config_yaml_file_contents = f"'path: {os.path.abspath(output_location)} # dataset root dir\ntrain: images/train # train images (relative to root)\nval: images/val     # val images (relative to root)\n\n# Keypoints shape: [number of keypoints, 3] \n# (133 keypoints total, each with x, y, and visibility)\nkpt_shape: [133, 3] \n\n# Classes\nnames:\n  0: person'"
+    config_yaml_file_contents = f"path: {os.path.abspath(output_location)} # dataset root dir\ntrain: images/train # train images (relative to root)\nval: images/val     # val images (relative to root)\n\n# Keypoints shape: [number of keypoints, 3] \n# (133 keypoints total, each with x, y, and visibility)\nkpt_shape: [133, 3] \n\n# Classes\nnames:\n  0: person"
     config_yaml_file = open(os.path.join(output_location, "coco-wholebody.yaml"), 'w')
     config_yaml_file.write(config_yaml_file_contents)
     config_yaml_file.flush()
