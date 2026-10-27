@@ -2,6 +2,7 @@ import json
 import os
 import sys
 import numpy as np
+import shutil
 
 # What the script needs to convert the data
 # Location of the json files
@@ -106,21 +107,17 @@ def main():
 
             # Opening files for writing
             label_file = open(os.path.join(output_location, "labels", mode, label_file_name), 'w')
-            image_file_orig = open(os.path.join(image_locs[mode], img_name), 'rb')
-            image_file_copy = open(os.path.join(output_location, "images", mode, img_name), 'wb')
-
+            
             # Write keypoints to file
             for kpts in img_to_keypoints[img_name]:
                 label_file.write(" ".join(map(str, kpts)) + "\n")
 
-            # Copy image to folder
-            image_file_copy.write(image_file_orig.read())
-            
             label_file.flush()
-            image_file_copy.flush()
             label_file.close()
-            image_file_copy.close()
-            image_file_orig.close()
+
+            # Copy the image over
+            shutil.copyfile(os.path.join(image_locs[mode], img_name), os.path.join(output_location, "images", mode, img_name))
+
         print("Done")
 
     config_yaml_file_contents = f"'path: {os.path.abspath(output_location)} # dataset root dir\ntrain: images/train # train images (relative to root)\nval: images/val     # val images (relative to root)\n\n# Keypoints shape: [number of keypoints, 3] \n# (133 keypoints total, each with x, y, and visibility)\nkpt_shape: [133, 3] \n\n# Classes\nnames:\n  0: person'"
