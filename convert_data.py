@@ -106,14 +106,13 @@ def main():
             label_file_name = img_name.replace(".jpg", ".txt")
 
             # Opening files for writing
-            label_file = open(os.path.join(output_location, "labels", mode, label_file_name), 'w')
+            with open(os.path.join(output_location, "labels", mode, label_file_name), 'w') as label_file: 
             
-            # Write keypoints to file
-            for kpts in img_to_keypoints[img_name]:
-                label_file.write(" ".join(map(str, kpts)) + "\n")
+                # Write keypoints to file
+                for kpts in img_to_keypoints[img_name]:
+                    label_file.write(" ".join(map(str, kpts)) + "\n")
 
-            label_file.flush()
-            label_file.close()
+                label_file.flush()
 
             # Copy the image over
             shutil.copyfile(os.path.join(image_locs[mode], img_name), os.path.join(output_location, "images", mode, img_name))
