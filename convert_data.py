@@ -8,13 +8,6 @@ import numpy as np
 # Location of the images
 # Output location
 
-def join(l, s):
-    return_string = ""
-    for item in l[0:-1]:
-        return_string += str(item)
-        return_string += s
-    return return_string + str(l[-1])
-
 def main():
     if len(sys.argv) != 5:
         print("python3 convert_data.py <location_of_json_file> <location_of_train_images> <location_of_val_images> <output_location>")
@@ -118,7 +111,7 @@ def main():
 
             # Write keypoints to file
             for kpts in img_to_keypoints[img_name]:
-                label_file.write(join(kpts, " ") + "\n")
+                label_file.write(" ".join(map(str, kpts)) + "\n")
 
             # Copy image to folder
             image_file_copy.write(image_file_orig.read())
